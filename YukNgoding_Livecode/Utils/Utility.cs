@@ -36,9 +36,9 @@ public abstract class Utility
             try
             {
                 Console.Write($"{info} : ");
-                var input = int.Parse(Console.ReadLine());
+                var input = Console.ReadLine();
                 if(!Validation.IntValidation($"{input}")) continue;
-                return input;
+                return int.Parse(input);
             }
             catch (Exception e)
             {

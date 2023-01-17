@@ -83,4 +83,14 @@ public class CourseDetailService : ICourseDetailService
             throw;
         }
     }
+
+    public List<CourseDetail> TraineeToApprove()
+    {
+        return _courseDetailRepository.TraineeToApprove();
+    }
+
+    public List<CourseDetail> ApprovedTrainee()
+    {
+        return _courseDetailRepository.ApprovedTrainee();
+    }
 }

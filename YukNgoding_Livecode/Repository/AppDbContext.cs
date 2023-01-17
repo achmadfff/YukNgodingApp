@@ -10,12 +10,6 @@ public class AppDbContext : DbContext
     public DbSet<CourseDetail> CourseDetails { get; set; }
     public DbSet<Trainee> Trainees { get; set; }
     public DbSet<Credential> Credentials { get; set; }
-    
-    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    // {
-    //     string connString = @"Server=DESKTOP-J65MPJ3;Database=YukngodingDB;Trusted_Connection=True;TrustServerCertificate=True;";
-    //     optionsBuilder.UseSqlServer(connString);
-    // }
 
     protected AppDbContext()
     {

@@ -20,4 +20,9 @@ public class CourseRepository : ICourseRepository
     {
         return _appDbContext.Courses.FirstOrDefault(course => course.Name.Equals(name));
     }
+
+    public List<Course> GetAll()
+    {
+        return _appDbContext.Courses.ToList();
+    }
 }

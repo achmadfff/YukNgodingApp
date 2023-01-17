@@ -43,21 +43,21 @@ public class Course
     public string Trainer { get; set; }
     
     [Required]
-    [Column(name:"start_time",TypeName = "NVarchar(100)")]
+    [Column(name:"start_hour",TypeName = "NVarchar(100)")]
     [Display(Name = "Start Name")]
-    public int StartTime { get; set; }
+    public int StartHour { get; set; }
     
     [Required]
-    [Column(name:"end_time",TypeName = "NVarchar(100)")]
+    [Column(name:"end_hour",TypeName = "NVarchar(100)")]
     [Display(Name = "End Time")]
-    public int EndTime { get; set; }
+    public int EndHour { get; set; }
     
     public ICollection<CourseDetail> CourseDetails { get; set; }
 
     public override string ToString()
     {
-        return $"{nameof(Id)}: {Id}, {nameof(Name)}: {Name}, {nameof(Description)}: {Description}," +
-               $" {nameof(CourseTime)}: {CourseTime}, {nameof(CostCategory)}: {CostCategory}," +
-               $" {nameof(CourseCategory)}: {CourseCategory}, {nameof(MinCriteria)}: {MinCriteria}";
+        return $"Id: {Id}, Name: {Name}, Description: {Description}, CourseTime: {CourseTime}, " +
+               $"CostCategory: {CostCategory}, CourseCategory: {CourseCategory}, MinCriteria: {MinCriteria}, " +
+               $"Trainer: {Trainer}, StartTime: {StartHour}, EndTime: {EndHour}";
     }
 }

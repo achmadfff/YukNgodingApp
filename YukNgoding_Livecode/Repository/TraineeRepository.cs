@@ -31,4 +31,19 @@ public class TraineeRepository : ITraineeRepository
     {
         _appDbContext.Trainees.Update(trainee);
     }
+
+    public List<Trainee> GetAll()
+    {
+        return _appDbContext.Trainees.ToList();
+    }
+
+    public List<Trainee> GetAllInactive()
+    {
+        return _appDbContext.Trainees.Where(trainee => trainee.IsActive == false).ToList();
+    }
+
+    public List<Trainee> GetAllAactive()
+    {
+        return _appDbContext.Trainees.Where(trainee => trainee.IsActive == true).ToList();
+    }
 }

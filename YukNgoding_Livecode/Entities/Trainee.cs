@@ -49,4 +49,11 @@ public class Trainee
     public virtual Credential Credential { get; set; }
     
     public ICollection<CourseDetail> CourseDetails { get; set; }
+
+    public override string ToString()
+    {
+        return $"Email: {Email}, FirstName: {FirstName}, LastName: {LastName}, CallName: {CallName}, " +
+               $"DomicileAddress: {DomicileAddress}, PhoneNumber: {PhoneNumber}, Nik: {Nik}, " +
+               $"LastEducation: {LastEducation}, IsActive: {IsActive}";
+    }
 }

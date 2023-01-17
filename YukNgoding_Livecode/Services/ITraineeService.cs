@@ -11,4 +11,8 @@ public interface ITraineeService
     Trainee GetByEmailWithActive(string email);
 
     void ActivationTrainee(Trainee trainee);
+
+    List<Trainee> GetAll();
+    List<Trainee> GetAllInactive();
+    List<Trainee> GetAllActive();
 }

@@ -75,4 +75,67 @@ public class TraineeView
             throw;
         }
     }
+
+    public void GetAllTraineeView()
+    {
+        try
+        {
+            Console.WriteLine('='.Repeat(40));
+            Console.WriteLine(' '.Repeat(15)+"List Trainee");
+            Console.WriteLine('='.Repeat(40));
+
+            var trainees = _traineeService.GetAll();
+            foreach (var trainee in trainees)
+            {
+                Console.WriteLine(trainee);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    
+    public void GetAllActiveTraineeView()
+    {
+        try
+        {
+            Console.WriteLine('='.Repeat(40));
+            Console.WriteLine(' '.Repeat(10)+"List Active Trainees");
+            Console.WriteLine('='.Repeat(40));
+
+            var trainees = _traineeService.GetAllActive();
+            foreach (var trainee in trainees)
+            {
+                Console.WriteLine(trainee);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public void GetAllInactiveTraineeView()
+    {
+        try
+        {
+            Console.WriteLine('='.Repeat(40));
+            Console.WriteLine(' '.Repeat(10)+"List Inactive Trainees");
+            Console.WriteLine('='.Repeat(40));
+
+            var trainees = _traineeService.GetAllInactive();
+            foreach (var trainee in trainees)
+            {
+                Console.WriteLine(trainee);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

@@ -10,4 +10,7 @@ public interface ICourseDetailService
     void UpdateApproval(CourseDetail courseDetail);
 
     CourseDetail JoinToCourse(int id);
+
+    List<CourseDetail> TraineeToApprove();
+    List<CourseDetail> ApprovedTrainee();
 }

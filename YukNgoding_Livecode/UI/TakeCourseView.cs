@@ -23,23 +23,30 @@ public class TakeCourseView
     {
         var email = Utility.InputEmail("Enter Email of The Trainee: ", s => s.Length < 100);
         var trainee = _traineeService.GetByEmailWithActive(email);
-
-        var courseName = Utility.InputString("Enter the name of the course you want to take: ", s => s.Length < 100);
-        var course = _courseService.GetByName(courseName);
-
-        var courseDetail = new CourseDetail
+        if (!trainee.IsActive)
         {
-            StartDate = default,
-            EndDate = default,
-            IsApprove = false,
-            Course = course,
-            Trainee = trainee
-        };
+            Console.WriteLine("Trainee Must Be Active First!!");
+        }
+        else
+        {
+            var courseName =
+                Utility.InputString("Enter the name of the course you want to take: ", s => s.Length < 100);
+            var course = _courseService.GetByName(courseName);
 
-        var courseDetails = _courseDetailService.CreateNewCourseDetail(courseDetail);
-        Console.WriteLine(courseDetails);
+            var courseDetail = new CourseDetail
+            {
+                StartDate = default,
+                EndDate = default,
+                IsApprove = false,
+                Course = course,
+                Trainee = trainee
+            };
 
-        Console.WriteLine("Successful Course Taking!! Wait for approval!!");
+            var courseDetails = _courseDetailService.CreateNewCourseDetail(courseDetail);
+            Console.WriteLine(courseDetails);
+
+            Console.WriteLine("Successful Course Taking!! Wait for approval!!");
+        }
     }
 
     public void ApproveTrainee()
@@ -58,6 +65,50 @@ public class TakeCourseView
             {
                 _courseDetailService.UpdateApproval(courseDetail);
                 Console.WriteLine("Approve Trainee Success!!");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public void GetAllTraineeToApproveView()
+    {
+        try
+        {
+            Console.WriteLine('='.Repeat(40));
+            Console.WriteLine(' '.Repeat(10)+"List Trainees To Approve:");
+            Console.WriteLine('='.Repeat(40));
+
+            var trainees = _courseDetailService.TraineeToApprove();
+            foreach (var trainee in trainees)
+            {
+                Console.WriteLine($"Id: {trainee.Id}, Course: {trainee.Course.Name}, Trainee Email: {trainee.Trainee.Email}, " +
+                                  $"Trainee CallName: {trainee.Trainee.CallName}, Status: {trainee.IsApprove}");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public void GetAllApprovedTraineeView()
+    {
+        try
+        {
+            Console.WriteLine('='.Repeat(40));
+            Console.WriteLine(' '.Repeat(10)+"List Trainees To Approve:");
+            Console.WriteLine('='.Repeat(40));
+
+            var trainees = _courseDetailService.ApprovedTrainee();
+            foreach (var trainee in trainees)
+            {
+                Console.WriteLine($"Id: {trainee.Id}, Course: {trainee.Course.Name}, Trainee Email: {trainee.Trainee.Email}, " +
+                                  $"Trainee CallName: {trainee.Trainee.CallName}, Status: {trainee.IsApprove}");
             }
         }
         catch (Exception e)

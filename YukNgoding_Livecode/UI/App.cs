@@ -44,6 +44,9 @@ public class App
                             Console.WriteLine('-'.Repeat(100));
                             Console.WriteLine("1. Create Trainee");
                             Console.WriteLine("2. Activation Trainee");
+                            Console.WriteLine("3. View All Trainee");
+                            Console.WriteLine("4. View All Active Trainee");
+                            Console.WriteLine("5. View All Inactive Trainee");
                             Console.WriteLine("0. Exit");
                             Console.Write("Enter option: ");
                             optionTrainee = int.Parse(Console.ReadLine());
@@ -60,6 +63,21 @@ public class App
                                     _traineeView.ActivationTraineeView();
                                     Console.ReadKey();
                                     break;
+                                case 3:
+                                    Console.WriteLine("View All Trainee");
+                                    _traineeView.GetAllTraineeView();
+                                    Console.ReadKey();
+                                    break;
+                                case 4:
+                                    Console.WriteLine("View All Active Trainee");
+                                    _traineeView.GetAllActiveTraineeView();
+                                    Console.ReadKey();
+                                    break;
+                                case 5:
+                                    Console.WriteLine("View All Inactive Trainee");
+                                    _traineeView.GetAllInactiveTraineeView();
+                                    Console.ReadKey();
+                                    break;
                             }
                         } while (optionTrainee != 0);
                         break;
@@ -72,6 +90,7 @@ public class App
                             Console.WriteLine(' '.Repeat(40) +"Management Course");
                             Console.WriteLine('-'.Repeat(100));
                             Console.WriteLine("1. Create Course");
+                            Console.WriteLine("2. View Course");
                             Console.WriteLine("0. Exit");
                             Console.Write("Enter option: ");
                             optionCourse = int.Parse(Console.ReadLine());
@@ -81,6 +100,11 @@ public class App
                                 case 1:
                                     Console.WriteLine("Create Course");
                                     _courseView.CreateCourseView();
+                                    Console.ReadKey();
+                                    break;
+                                case 2:
+                                    Console.WriteLine("View All Courses");
+                                    _courseView.GetAllCoursesView();
                                     Console.ReadKey();
                                     break;
                             }
@@ -96,6 +120,8 @@ public class App
                             Console.WriteLine('-'.Repeat(100));
                             Console.WriteLine("1. Course Taking");
                             Console.WriteLine("2. Approve Traine");
+                            Console.WriteLine("3. List Trainee To Approve");
+                            Console.WriteLine("4. List Approved Trainee");
                             Console.WriteLine("0. Exit");
                             Console.Write("Enter option: ");
                             optionTakeCourse = int.Parse(Console.ReadLine());
@@ -110,6 +136,16 @@ public class App
                                 case 2:
                                     Console.WriteLine("Approve Trainee");
                                     _takeCourseView.ApproveTrainee();
+                                    Console.ReadKey();
+                                    break;
+                                case 3:
+                                    Console.WriteLine("List Trainee To Approve");
+                                    _takeCourseView.GetAllTraineeToApproveView();
+                                    Console.ReadKey();
+                                    break;
+                                case 4:
+                                    Console.WriteLine("List Approved Trainee");
+                                    _takeCourseView.GetAllApprovedTraineeView();
                                     Console.ReadKey();
                                     break;
                             }

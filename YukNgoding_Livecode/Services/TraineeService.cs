@@ -16,7 +16,7 @@ public class TraineeService : ITraineeService
     }
 
     public Trainee CreateNewTrainee(RegisterTrainee registerTrainee)
-    {   
+    {
         _persistence.BeginTransaction();
         try
         {
@@ -40,7 +40,6 @@ public class TraineeService : ITraineeService
             _persistence.SaveChanges();
             _persistence.Commit();
             return trainee;
-
         }
         catch (Exception e)
         {
@@ -71,8 +70,8 @@ public class TraineeService : ITraineeService
         {
             var trainee = _traineeRepository.FindByEmailIsActive(email);
             if (trainee is null) throw new Exception("Trainee Not Found!!");
-            if (!trainee.IsActive) throw new Exception("Trainee Must Be Activate First!!");
             return trainee;
+            
         }
         catch (Exception e)
         {
@@ -98,5 +97,20 @@ public class TraineeService : ITraineeService
             _persistence.Rollback();
             throw;
         }
+    }
+
+    public List<Trainee> GetAll()
+    {
+        return _traineeRepository.GetAll();
+    }
+
+    public List<Trainee> GetAllInactive()
+    {
+        return _traineeRepository.GetAllInactive();
+    }
+
+    public List<Trainee> GetAllActive()
+    {
+        return _traineeRepository.GetAllAactive();
     }
 }

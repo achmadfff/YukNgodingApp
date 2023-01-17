@@ -1,4 +1,5 @@
 ﻿using YukNgoding_Livecode.Entities;
+using YukNgoding_Livecode.Extensions;
 using YukNgoding_Livecode.Services;
 using YukNgoding_Livecode.Utils;
 
@@ -36,13 +37,34 @@ public class CourseView
                 CourseCategory = courseCategory,
                 MinCriteria = minCriteria,
                 Trainer = trainer,
-                StartTime = startTime,
-                EndTime = endTime
+                StartHour = startTime,
+                EndHour = endTime
             };
 
             var course = _courseService.CreateNewCourse(courseAdd);
             Console.WriteLine(course);
             Console.WriteLine("Create Success!");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public void GetAllCoursesView()
+    {
+        try
+        {
+            Console.WriteLine('='.Repeat(40));
+            Console.WriteLine(' '.Repeat(15)+"List Courses");
+            Console.WriteLine('='.Repeat(40));
+
+            var courses = _courseService.GetAll();
+            foreach (var course in courses)
+            {
+                Console.WriteLine(course);
+            }
         }
         catch (Exception e)
         {

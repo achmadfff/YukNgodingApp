@@ -33,4 +33,18 @@ public class CourseDetailRepository : ICourseDetailRepository
         return _appDbContext.CourseDetails
             .Include(p => p.Course).FirstOrDefault(detail => detail.Id.Equals(courseDetail.Id));
     }
+
+    public List<CourseDetail> TraineeToApprove()
+    {
+        return _appDbContext.CourseDetails.Include(detail => detail.Course)
+            .Include(detail => detail.Trainee)
+            .Where(detail => detail.IsApprove == false).ToList();
+    }
+
+    public List<CourseDetail> ApprovedTrainee()
+    {
+        return _appDbContext.CourseDetails.Include(detail => detail.Course)
+            .Include(detail => detail.Trainee)
+            .Where(detail => detail.IsApprove == true).ToList();
+    }
 }

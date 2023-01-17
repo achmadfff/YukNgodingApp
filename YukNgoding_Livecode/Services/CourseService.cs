@@ -47,4 +47,9 @@ public class CourseService : ICourseService
             throw;
         }
     }
+
+    public List<Course> GetAll()
+    {
+        return _courseRepository.GetAll();
+    }
 }

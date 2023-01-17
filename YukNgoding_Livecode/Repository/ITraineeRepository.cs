@@ -10,4 +10,7 @@ public interface ITraineeRepository
     Trainee? FindByEmailIsActive(string email);
 
     void UpdateIsActive(Trainee trainee);
+    List<Trainee> GetAll();
+    List<Trainee> GetAllInactive();
+    List<Trainee> GetAllAactive();
 }

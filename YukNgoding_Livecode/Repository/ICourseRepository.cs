@@ -7,4 +7,8 @@ public interface ICourseRepository
     Course Save(Course course);
     
     Course? FindByName(string name);
+
+    List<Course> GetAll();
+
+    
 }

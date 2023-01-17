@@ -13,7 +13,6 @@ public class Credential
     
     [ForeignKey("Trainee")]
     [Column(name:"email")]
-    [Display(Name = "Id")]
     public string Email { get; set; }
     
     [Column(name:"password",TypeName = "NVarchar(50)")]

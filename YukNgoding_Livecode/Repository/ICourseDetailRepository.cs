@@ -10,4 +10,7 @@ public interface ICourseDetailRepository
     void UpdateApproval(CourseDetail courseDetail);
 
     CourseDetail? JoinCourse(CourseDetail courseDetail);
+
+    List<CourseDetail> TraineeToApprove();
+    List<CourseDetail> ApprovedTrainee();
 }
