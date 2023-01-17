@@ -34,6 +34,20 @@ public class CourseDetailRepository : ICourseDetailRepository
             .Include(p => p.Course).FirstOrDefault(detail => detail.Id.Equals(courseDetail.Id));
     }
 
+    public List<CourseDetail> JoinCourseList(int id)
+    {
+        return _appDbContext.CourseDetails
+            .Include(detail => detail.Course)
+            .Where(detail => detail.Course.Id.Equals(id)).ToList();
+    }
+    
+    public List<CourseDetail> JoinCoursePercentage(int id)
+    {
+        return _appDbContext.CourseDetails
+            .Include(detail => detail.Course)
+            .Where(detail => detail.Score >= detail.Course.MinCriteria && detail.Course.Id.Equals(id)).ToList();
+    }
+
     public List<CourseDetail> TraineeToApprove()
     {
         return _appDbContext.CourseDetails.Include(detail => detail.Course)

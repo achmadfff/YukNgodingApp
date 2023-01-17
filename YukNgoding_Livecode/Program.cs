@@ -41,6 +41,7 @@ static IHostBuilder CreateHostBuilder(string[] args) =>
             services.AddTransient<TraineeView>();
             services.AddTransient<TakeCourseView>();
             services.AddTransient<CourseView>();
+            services.AddTransient<TestCourseView>();
         
             services.AddTransient<App>();
         });

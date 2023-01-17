@@ -10,6 +10,8 @@ public interface ICourseDetailService
     void UpdateApproval(CourseDetail courseDetail);
 
     CourseDetail JoinToCourse(int id);
+    List<CourseDetail> JoinToCourseGroupBy(int id);
+    public List<CourseDetail> JoinCoursePercentage(int id);
 
     List<CourseDetail> TraineeToApprove();
     List<CourseDetail> ApprovedTrainee();

@@ -19,15 +19,15 @@ public class TraineeView
     {
         try
         {
-            var email = Utility.InputEmail("Enter Email of The Trainee: ", s => s.Length < 100);
-            var firstName = Utility.InputString("Enter First Name of The Trainee: ", s => s.Length < 100);
-            var lastName = Utility.InputString("Enter Last Name of The Trainee: ", s => s.Length < 100);
-            var callName = Utility.InputString("Enter Call Name of The Trainee: ", s => s.Length < 100);
-            var domicileAddress = Utility.InputString("Enter Domicile Address of The Trainee: ", s => s.Length < 100);
-            var phoneNumber = Utility.InputString("Enter Phone Number of The Trainee: ", s => s.Length < 14);
-            var nik = Utility.InputInt("Enter NIK of The Trainee: ", Validation.IntValidation);
-            var lastEducation = Utility.InputString("Enter Last Education of The Trainee: ", s => s.Length < 100);
-            var password = Utility.InputString("Enter Password of The Trainee: ", s => s.Length < 100);
+            var email = Utility.InputEmail("Enter Email of The Trainee", s => s.Length < 100);
+            var firstName = Utility.InputString("Enter First Name of The Trainee", s => s.Length < 100);
+            var lastName = Utility.InputString("Enter Last Name of The Trainee", s => s.Length < 100);
+            var callName = Utility.InputString("Enter Call Name of The Trainee", s => s.Length < 100);
+            var domicileAddress = Utility.InputString("Enter Domicile Address of The Trainee", s => s.Length < 100);
+            var phoneNumber = Utility.InputString("Enter Phone Number of The Trainee", s => s.Length < 14);
+            var nik = Utility.InputInt("Enter NIK of The Trainee", Validation.IntValidation);
+            var lastEducation = Utility.InputString("Enter Last Education of The Trainee", s => s.Length < 100);
+            var password = Utility.InputString("Enter Password of The Trainee", s => s.Length < 100);
             var registerTrainee = new RegisterTrainee
             {
                 Email = email,
@@ -56,7 +56,7 @@ public class TraineeView
     {
         try
         {
-            var email = Utility.InputEmail("Enter Email of The Trainee: ", s => s.Length < 100);
+            var email = Utility.InputEmail("Enter Email of The Trainee", s => s.Length < 100);
             var trainee = _traineeService.GetByEmail(email);
 
             if (trainee.IsActive)

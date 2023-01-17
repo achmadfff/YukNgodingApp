@@ -10,5 +10,5 @@ public interface ICourseRepository
 
     List<Course> GetAll();
 
-    
+    Course? JoinCourseDetailByName(string name);
 }

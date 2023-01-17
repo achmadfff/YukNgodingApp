@@ -23,6 +23,14 @@ public class CourseDetail
     [Display(Name = "Is Approve")]
     public bool IsApprove { get; set; }
     
+    [Column(name:"score")]
+    [Display(Name = "Score")]
+    public int Score { get; set; }
+    
+    [Column(name:"get_certificate")]
+    [Display(Name = "Get Certificate")]
+    public bool GetCertificate { get; set; }
+    
     public Course Course { get; set; }
     
     public Trainee Trainee { get; set; }

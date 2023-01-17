@@ -1,4 +1,5 @@
-﻿using YukNgoding_Livecode.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using YukNgoding_Livecode.Entities;
 
 namespace YukNgoding_Livecode.Repository;
 
@@ -24,5 +25,12 @@ public class CourseRepository : ICourseRepository
     public List<Course> GetAll()
     {
         return _appDbContext.Courses.ToList();
+    }
+
+    public Course? JoinCourseDetailByName(string name)
+    {
+        return _appDbContext.Courses
+            .Include(course => course.CourseDetails)
+            .FirstOrDefault(course => course.Name.Equals(name));
     }
 }

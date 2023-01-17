@@ -10,4 +10,6 @@ public interface ICourseService
     Course? GetByName(string name);
 
     List<Course> GetAll();
+
+    Course? JoinCourseDetailByName(string name);
 }

@@ -62,6 +62,8 @@ public class CourseDetailService : ICourseDetailService
             traineeToApprove.StartDate = DateTime.Now.AddBusinessDays(1); // StartDate dimulai dari waktu di approve ditambah 1 hari/besok.
             // EndDate berakhir berdasarkan kapan dia mulai, ditambah waktu pelatihan, tidak termasuk weekend. 
             traineeToApprove.EndDate = DateTime.Now.AddBusinessDays(courseDetail.Course.CourseTime + 1);
+            traineeToApprove.Score = courseDetail.Score;
+            traineeToApprove.GetCertificate = courseDetail.Score >= courseDetail.Course.MinCriteria ? true : false;
             _persistence.SaveChanges();
             _persistence.Commit();
         }
@@ -81,6 +83,32 @@ public class CourseDetailService : ICourseDetailService
             var courseDetails = GetById(id);
             var courseDetailsJoin = _courseDetailRepository.JoinCourse(courseDetails); // Get CourseDetail Join ke Course
             return courseDetailsJoin;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public List<CourseDetail> JoinToCourseGroupBy(int id)
+    {
+        try
+        {
+            return _courseDetailRepository.JoinCourseList(id);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public List<CourseDetail> JoinCoursePercentage(int id)
+    {
+        try
+        {
+            return _courseDetailRepository.JoinCoursePercentage(id);
         }
         catch (Exception e)
         {

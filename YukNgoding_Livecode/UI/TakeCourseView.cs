@@ -21,7 +21,7 @@ public class TakeCourseView
 
     public void TakeCourse()
     {
-        var email = Utility.InputEmail("Enter Email of The Trainee: ", s => s.Length < 100);
+        var email = Utility.InputEmail("Enter Email of The Trainee", s => s.Length < 100);
         var trainee = _traineeService.GetByEmailWithActive(email);
         if (!trainee.IsActive)
         {
@@ -30,7 +30,7 @@ public class TakeCourseView
         else
         {
             var courseName =
-                Utility.InputString("Enter the name of the course you want to take: ", s => s.Length < 100);
+                Utility.InputString("Enter the name of the course you want to take", s => s.Length < 100);
             var course = _courseService.GetByName(courseName);
 
             var courseDetail = new CourseDetail
@@ -38,6 +38,8 @@ public class TakeCourseView
                 StartDate = default,
                 EndDate = default,
                 IsApprove = false,
+                Score = default,
+                GetCertificate = false,
                 Course = course,
                 Trainee = trainee
             };
@@ -53,7 +55,9 @@ public class TakeCourseView
     {
         try
         {
-            var id = Utility.InputInt("Enter Id of The Course Detail you want to approve: ", Validation.IntValidation);
+            var id = Utility.InputInt("Enter Id of The Course Detail you want to approve", Validation.IntValidation);
+
+            var score = Utility.InputInt("Enter Score for this Trainee", Validation.IntValidation);
 
             var courseDetail = _courseDetailService.JoinToCourse(id);
 
@@ -63,6 +67,7 @@ public class TakeCourseView
             }
             else
             {
+                courseDetail.Score = score;
                 _courseDetailService.UpdateApproval(courseDetail);
                 Console.WriteLine("Approve Trainee Success!!");
             }

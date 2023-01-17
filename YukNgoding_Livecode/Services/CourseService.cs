@@ -55,4 +55,9 @@ public class CourseService : ICourseService
     {
         return _courseRepository.GetAll();
     }
+
+    public Course? JoinCourseDetailByName(string name)
+    {
+        return _courseRepository.JoinCourseDetailByName(name);
+    }
 }

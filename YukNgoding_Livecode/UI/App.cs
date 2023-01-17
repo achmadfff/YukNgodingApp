@@ -1,4 +1,5 @@
 ﻿using YukNgoding_Livecode.Extensions;
+using YukNgoding_Livecode.Utils;
 
 namespace YukNgoding_Livecode.UI;
 
@@ -7,12 +8,14 @@ public class App
     private readonly TraineeView _traineeView;
     private readonly CourseView _courseView;
     private readonly TakeCourseView _takeCourseView;
+    private readonly TestCourseView _testCourseView;
 
-    public App(TraineeView traineeView, CourseView courseView, TakeCourseView takeCourseView)
+    public App(TraineeView traineeView, CourseView courseView, TakeCourseView takeCourseView, TestCourseView testCourseView)
     {
         _traineeView = traineeView;
         _courseView = courseView;
         _takeCourseView = takeCourseView;
+        _testCourseView = testCourseView;
     }
 
     public void Run()
@@ -28,9 +31,9 @@ public class App
                 Console.WriteLine("1. Management Trainee");
                 Console.WriteLine("2. Management Course");
                 Console.WriteLine("3. Management Take Courses");
+                Console.WriteLine("4. Management Test Courses");
                 Console.WriteLine("0. Exit");
-                Console.Write("Enter option: ");
-                choose = int.Parse(Console.ReadLine());
+                choose = Utility.InputInt("Enter Option", Validation.IntValidation);
             
                 switch (choose)
                 {
@@ -48,8 +51,7 @@ public class App
                             Console.WriteLine("4. View All Active Trainee");
                             Console.WriteLine("5. View All Inactive Trainee");
                             Console.WriteLine("0. Exit");
-                            Console.Write("Enter option: ");
-                            optionTrainee = int.Parse(Console.ReadLine());
+                            optionTrainee = Utility.InputInt("Enter Option", Validation.IntValidation);
 
                             switch (optionTrainee)
                             {
@@ -92,8 +94,7 @@ public class App
                             Console.WriteLine("1. Create Course");
                             Console.WriteLine("2. View Course");
                             Console.WriteLine("0. Exit");
-                            Console.Write("Enter option: ");
-                            optionCourse = int.Parse(Console.ReadLine());
+                            optionCourse = Utility.InputInt("Enter Option", Validation.IntValidation);
 
                             switch (optionCourse)
                             {
@@ -123,8 +124,7 @@ public class App
                             Console.WriteLine("3. List Trainee To Approve");
                             Console.WriteLine("4. List Approved Trainee");
                             Console.WriteLine("0. Exit");
-                            Console.Write("Enter option: ");
-                            optionTakeCourse = int.Parse(Console.ReadLine());
+                            optionTakeCourse = Utility.InputInt("Enter Option", Validation.IntValidation);
 
                             switch (optionTakeCourse)
                             {
@@ -146,6 +146,34 @@ public class App
                                 case 4:
                                     Console.WriteLine("List Approved Trainee");
                                     _takeCourseView.GetAllApprovedTraineeView();
+                                    Console.ReadKey();
+                                    break;
+                            }
+                        } while (optionTakeCourse != 0);
+                        break;
+                    case 4:
+                        int optionTestCourse;
+                        do
+                        {
+                            Console.Clear();
+                            Console.WriteLine('-'.Repeat(100));
+                            Console.WriteLine(' '.Repeat(40) +"Test Courses Management");
+                            Console.WriteLine('-'.Repeat(100));
+                            Console.WriteLine("1. Report Average Score Course");
+                            Console.WriteLine("2. Report Percentage Pass Course");
+                            Console.WriteLine("0. Exit");
+                            optionTakeCourse = Utility.InputInt("Enter Option", Validation.IntValidation);
+                    
+                            switch (optionTakeCourse)
+                            {
+                                case 1:
+                                    Console.WriteLine("Average");
+                                    _testCourseView.ReportAverageScore();
+                                    Console.ReadKey();
+                                    break;
+                                case 2:
+                                    Console.WriteLine("Percentage Pass Course");
+                                    _testCourseView.ReportPercentagePass();
                                     Console.ReadKey();
                                     break;
                             }
