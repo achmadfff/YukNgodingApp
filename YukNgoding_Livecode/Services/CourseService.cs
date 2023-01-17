@@ -37,7 +37,7 @@ public class CourseService : ICourseService
     {
         try
         {
-            var course = _courseRepository.FindByEmail(name);
+            var course = _courseRepository.FindByName(name);
             if (course is null) throw new Exception("Course Not Found!!");
             return course;
         }

@@ -6,5 +6,5 @@ public interface ICourseRepository
 {
     Course Save(Course course);
     
-    Course? FindByEmail(string name);
+    Course? FindByName(string name);
 }

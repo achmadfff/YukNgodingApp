@@ -16,7 +16,7 @@ public class CourseRepository : ICourseRepository
         return _appDbContext.Courses.Add(course).Entity;
     }
 
-    public Course? FindByEmail(string name)
+    public Course? FindByName(string name)
     {
         return _appDbContext.Courses.FirstOrDefault(course => course.Name.Equals(name));
     }

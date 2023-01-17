@@ -11,7 +11,8 @@ public class TakeCourseView
     private readonly ICourseService _courseService;
     private readonly ICourseDetailService _courseDetailService;
 
-    public TakeCourseView(ITraineeService traineeService, ICourseService courseService, ICourseDetailService courseDetailService)
+    public TakeCourseView(ITraineeService traineeService, ICourseService courseService,
+        ICourseDetailService courseDetailService)
     {
         _traineeService = traineeService;
         _courseService = courseService;
@@ -22,8 +23,8 @@ public class TakeCourseView
     {
         var email = Utility.InputEmail("Enter Email of The Trainee: ", s => s.Length < 100);
         var trainee = _traineeService.GetByEmailWithActive(email);
-        
-        var courseName =  Utility.InputString("Enter the name of the course you want to take: ", s => s.Length < 100);
+
+        var courseName = Utility.InputString("Enter the name of the course you want to take: ", s => s.Length < 100);
         var course = _courseService.GetByName(courseName);
 
         var courseDetail = new CourseDetail
@@ -45,12 +46,19 @@ public class TakeCourseView
     {
         try
         {
-            var id = Utility.InputInt("Enter Id of The Course Detail you want to approve: ",Validation.IntValidation);
-            
+            var id = Utility.InputInt("Enter Id of The Course Detail you want to approve: ", Validation.IntValidation);
+
             var courseDetail = _courseDetailService.JoinToCourse(id);
-            
-            _courseDetailService.UpdateApproval(courseDetail);
-            Console.WriteLine("Approve Trainee Success!!");
+
+            if (courseDetail.IsApprove)
+            {
+                Console.WriteLine("This Trainee was already Active");
+            }
+            else
+            {
+                _courseDetailService.UpdateApproval(courseDetail);
+                Console.WriteLine("Approve Trainee Success!!");
+            }
         }
         catch (Exception e)
         {

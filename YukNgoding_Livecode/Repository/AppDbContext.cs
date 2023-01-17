@@ -11,10 +11,20 @@ public class AppDbContext : DbContext
     public DbSet<Trainee> Trainees { get; set; }
     public DbSet<Credential> Credentials { get; set; }
     
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // {
+    //     string connString = @"Server=DESKTOP-J65MPJ3;Database=YukngodingDB;Trusted_Connection=True;TrustServerCertificate=True;";
+    //     optionsBuilder.UseSqlServer(connString);
+    // }
+
+    protected AppDbContext()
     {
-        string connString = @"Server=DESKTOP-J65MPJ3;Database=YukngodingDB;Trusted_Connection=True;TrustServerCertificate=True;";
-        optionsBuilder.UseSqlServer(connString);
+        
+    }
+
+    public AppDbContext(DbContextOptions options) : base(options)
+    {
+        
     }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
