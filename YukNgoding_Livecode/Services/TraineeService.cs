@@ -15,6 +15,7 @@ public class TraineeService : ITraineeService
         _persistence = persistence;
     }
 
+    // Create New Trainee
     public Trainee CreateNewTrainee(RegisterTrainee registerTrainee)
     {
         _persistence.BeginTransaction();
@@ -49,6 +50,7 @@ public class TraineeService : ITraineeService
         }
     }
 
+    // Get Trainee By Email
     public Trainee GetByEmail(string email)
     {
         try
@@ -64,6 +66,7 @@ public class TraineeService : ITraineeService
         }
     }
 
+    // Get Active Trainee by email
     public Trainee GetByEmailWithActive(string email)
     {
         try
@@ -80,6 +83,7 @@ public class TraineeService : ITraineeService
         }
     }
 
+    // Update status Trainee
     public void ActivationTrainee(Trainee trainee)
     {
         _persistence.BeginTransaction();
@@ -99,16 +103,19 @@ public class TraineeService : ITraineeService
         }
     }
 
+    // Get All Trainee
     public List<Trainee> GetAll()
     {
         return _traineeRepository.GetAll();
     }
 
+    // Get All Inactive Trainee
     public List<Trainee> GetAllInactive()
     {
         return _traineeRepository.GetAllInactive();
     }
 
+    // Get All Active Trainee
     public List<Trainee> GetAllActive()
     {
         return _traineeRepository.GetAllAactive();

@@ -15,6 +15,7 @@ public class CourseDetailService : ICourseDetailService
         _persistence = persistence;
     }
 
+    //Create Course Detail / Transaction
     public CourseDetail CreateNewCourseDetail(CourseDetail courseDetail)
     {
         _persistence.BeginTransaction();
@@ -33,6 +34,7 @@ public class CourseDetailService : ICourseDetailService
         }
     }
 
+    // Get Course By Id
     public CourseDetail? GetById(int id)
     {
         try
@@ -48,6 +50,7 @@ public class CourseDetailService : ICourseDetailService
         }
     }
 
+    // Update Is Approve
     public void UpdateApproval(CourseDetail courseDetail)
     {
         _persistence.BeginTransaction();
@@ -56,7 +59,8 @@ public class CourseDetailService : ICourseDetailService
             var traineeToApprove = GetById(courseDetail.Id);
             
             traineeToApprove.IsApprove = true;
-            traineeToApprove.StartDate = DateTime.Now.AddBusinessDays(1);
+            traineeToApprove.StartDate = DateTime.Now.AddBusinessDays(1); // StartDate dimulai dari waktu di approve ditambah 1 hari/besok.
+            // EndDate berakhir berdasarkan kapan dia mulai, ditambah waktu pelatihan, tidak termasuk weekend. 
             traineeToApprove.EndDate = DateTime.Now.AddBusinessDays(courseDetail.Course.CourseTime + 1);
             _persistence.SaveChanges();
             _persistence.Commit();
@@ -69,12 +73,13 @@ public class CourseDetailService : ICourseDetailService
         }
     }
 
+    // Get CourseDetail Join ke Course
     public CourseDetail JoinToCourse(int id)
     {
         try
         {
             var courseDetails = GetById(id);
-            var courseDetailsJoin = _courseDetailRepository.JoinCourse(courseDetails);
+            var courseDetailsJoin = _courseDetailRepository.JoinCourse(courseDetails); // Get CourseDetail Join ke Course
             return courseDetailsJoin;
         }
         catch (Exception e)
@@ -84,11 +89,13 @@ public class CourseDetailService : ICourseDetailService
         }
     }
 
+    // Get All Course Detail with approve is false
     public List<CourseDetail> TraineeToApprove()
     {
         return _courseDetailRepository.TraineeToApprove();
     }
 
+    // Get All CourseDetail with is_approve is true
     public List<CourseDetail> ApprovedTrainee()
     {
         return _courseDetailRepository.ApprovedTrainee();

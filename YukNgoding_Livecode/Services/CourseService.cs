@@ -14,6 +14,7 @@ public class CourseService : ICourseService
         _persistence = persistence;
     }
 
+    // Create New Course
     public Course CreateNewCourse(Course course)
     {
         _persistence.BeginTransaction();
@@ -33,6 +34,7 @@ public class CourseService : ICourseService
         }
     }
 
+    // Get By Name
     public Course? GetByName(string name)
     {
         try
@@ -48,6 +50,7 @@ public class CourseService : ICourseService
         }
     }
 
+    // Get All Course
     public List<Course> GetAll()
     {
         return _courseRepository.GetAll();
